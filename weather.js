@@ -13,15 +13,38 @@ function WeatherForecast() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)', backgroundSize: '400% 400%', animation: 'gradient 15s ease infinite', color: 'white', textAlign: 'center' }}>
+    <div style={{ 
+      minHeight: '100vh',
+      display: 'grid',
+      placeItems: 'center',
+      background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
+      backgroundSize: '400% 400%',
+      animation: 'gradient 15s ease infinite',
+      color: 'white',
+      padding: '2rem',
+      textAlign: 'center'
+    }}>
       <div>
         <h1>Weather Forecast</h1>
-        <button onClick={fetchWeather} disabled={loading}>{loading ? 'Loading...' : 'Get Weather'}</button>
+        <button onClick={fetchWeather} disabled={loading} style={{
+          padding: '12px 24px',
+          background: 'rgba(255,255,255,0.2)',
+          color: 'white',
+          border: '2px solid white',
+          borderRadius: '30px',
+          margin: '20px 0'
+        }}>
+          {loading ? 'Loading...' : 'Get Weather'}
+        </button>
         {forecast && (
-          <div>
+          <div style={{
+            background: 'rgba(255,255,255,0.15)',
+            padding: '20px',
+            borderRadius: '15px'
+          }}>
             <h2>{forecast.city}</h2>
             <div style={{ fontSize: '3rem' }}>{forecast.icon}</div>
-            <p>{forecast.temp}</p>
+            <p style={{ fontSize: '1.5rem' }}>{forecast.temp}</p>
             <p>{forecast.condition}</p>
           </div>
         )}
