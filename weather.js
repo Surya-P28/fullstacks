@@ -1,57 +1,43 @@
 import React, { useState } from 'react';
-
-function WeatherForecast() {
-  const [forecast, setForecast] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const fetchWeather = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setForecast({ city: "New York", temp: "72°F", condition: "Sunny", icon: "☀️" });
-      setLoading(false);
-    }, 1000);
-  };
+export default function ToggleMessage() {
+  const [show, setShow] = useState(false);
 
   return (
     <div style={{ 
       minHeight: '100vh',
       display: 'grid',
       placeItems: 'center',
-      background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
-      backgroundSize: '400% 400%',
-      animation: 'gradient 15s ease infinite',
+      background: 'linear-gradient(to bottom, #1e3c72 0%, #2a5298 100%)',
+      padding: 20,
       color: 'white',
-      padding: '2rem',
-      textAlign: 'center'
+      fontFamily: 'Arial, sans-serif'
     }}>
-      <div>
-        <h1>Weather Forecast</h1>
-        <button onClick={fetchWeather} disabled={loading} style={{
-          padding: '12px 24px',
-          background: 'rgba(255,255,255,0.2)',
-          color: 'white',
-          border: '2px solid white',
-          borderRadius: '30px',
-          margin: '20px 0'
-        }}>
-          {loading ? 'Loading...' : 'Get Weather'}
-        </button>
-        {forecast && (
-          <div style={{
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ marginBottom: 20 }}>Rainy Day Toggle</h1>
+        <button
+          onClick={() => setShow(!show)}
+          style={{
+            padding: '12px 24px',
             background: 'rgba(255,255,255,0.15)',
-            padding: '20px',
-            borderRadius: '15px'
-          }}>
-            <h2>{forecast.city}</h2>
-            <div style={{ fontSize: '3rem' }}>{forecast.icon}</div>
-            <p style={{ fontSize: '1.5rem' }}>{forecast.temp}</p>
-            <p>{forecast.condition}</p>
+            color: 'white',
+            border: '1px solid rgba(255,255,255,0.3)',
+            borderRadius: 8,
+            cursor: 'pointer',
+            backdropFilter: 'blur(5px)',
+            fontSize: 16
+          }}
+        >
+          {show ? 'Stop Rain' : 'Start Rain'}
+        </button>
+        
+        {show && (
+          <div style={{ marginTop: 30 }}>
+            <div style={{ fontSize: 40 }}>🌧️</div>
+            <p style={{ marginTop: 10 }}>The rain is falling peacefully...</p>
           </div>
         )}
       </div>
-      <style>{`@keyframes gradient { 0%,100% {background-position:0% 50%} 50% {background-position:100% 50%} }`}</style>
     </div>
   );
 }
 
-export default WeatherForecast;
